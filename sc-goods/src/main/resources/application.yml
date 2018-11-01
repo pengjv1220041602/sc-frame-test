@@ -1,0 +1,10 @@
+server:
+  port: 8004
+spring:
+  application:
+    name: goodsApplication
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://123qwe:123qwe@127.0.0.1:9000/eureka/
+

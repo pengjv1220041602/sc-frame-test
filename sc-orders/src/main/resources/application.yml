@@ -1,0 +1,12 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: orderApplication
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://123qwe:123qwe@127.0.0.1:9000/eureka/
+feign:
+  hystrix:
+    enabled: true
