@@ -1,0 +1,28 @@
+# config 的配置为管理配置的服务
+# 配置要求如下： 其中label是对应git仓库的分支，application是对应的服务，profile是对应的开发
+# 其中profile 包含了：dev开发环境，prod产品环境，test测试环境
+#/{application}/{profile}[/{label}]
+#/{application}-{profile}.yml
+#/{label}/{application}-{profile}.yml
+#/{application}-{profile}.properties
+#/{label}/{application}-{profile}.properties
+server:
+  port: 10002
+# 首先要提供一个git的仓库以及对应的url
+spring:
+  cloud:
+    config:
+      server:
+        git: # 指明这个是一个git的仓库
+          uri: https://github.com/pengjv1220041602/springcloudconfig.git
+          repos:
+            simple: https://github.com/simple/config-repo
+            special:
+              pattern: special*/dev*,*special*/dev*
+              uri: https://github.com/special/config-repo
+            local:
+              pattern: local*
+              uri: file:/home/configsvc/config-repo
+
+
+

@@ -1,0 +1,63 @@
+server:
+  port: 10001
+spring:
+  application:
+    name: zuulApplication
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+zuul:
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+    ignoredServices: '*'
+  prefix: /cc
+  routes:
+    goods:
+      path: /goods/**
+      service-id: goodsapplication
+    orders:
+      path: /bb/**
+      service-id: orderapplication
+      #不建议使用这种情况因为指定了url就无法做负载均衡了。如果还想做负载均衡那么，就需要配置listOfServers
+#    users:
+#      path: /myusers/**
+#      url: http://www.baidu.com
+#  禁用eureka服务注册。如果上面已经指定了url这种情况，那么建议禁止使用eureka配置如下：
+#ribbon:
+#  eureka:
+#    enabled: false
+# 配置Ribbon的轮训机制 users应该对应的是routes中的users，这样完成了负载均衡
+#users:
+#  ribbon:
+#    listOfServers: example.com,google.com
+# 扼杀模式和本地前进，在此配置中，我们可以看到url:后面跟到了forward:/secord 那么，所有的/third/** 访问都转发到了/3rd 路径上
+#zuul:
+#  routes:
+#    first:
+#      path: /first/**
+#      url: http://first.example.com
+#    second:
+#      path: /second/**
+#      url: forward:/second
+#    third:
+#      path: /third/**
+#      url: forward:/3rd
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://123qwe:123qwe@127.0.0.1:9000/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
