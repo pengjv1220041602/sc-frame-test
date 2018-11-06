@@ -15,6 +15,7 @@
         <module>sc-goods</module>
         <module>sc-zuul</module>
         <module>sc-config</module>
+        <module>sc-security</module>
     </modules>
 
     <parent>
