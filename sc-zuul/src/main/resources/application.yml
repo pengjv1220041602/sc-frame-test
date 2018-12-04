@@ -20,6 +20,9 @@ zuul:
     orders:
       path: /bb/**
       service-id: orderapplication
+    admin:
+      path: /cc/**
+      service-id: adminapplication
       #不建议使用这种情况因为指定了url就无法做负载均衡了。如果还想做负载均衡那么，就需要配置listOfServers
 #    users:
 #      path: /myusers/**

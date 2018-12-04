@@ -9,10 +9,19 @@ public class SecurityCore extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure (HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.formLogin()
+        httpSecurity
+//                .authenticationProvider(new DefaultJaasAuthenticationProvider())
+                .formLogin()
+                .loginProcessingUrl("/validate/login")
+                .loginPage("/login")
+                .successForwardUrl("/index")
+                .failureForwardUrl("/error1")
                 .and()
                 .authorizeRequests()
+                .antMatchers("/login", "threelogin.html").permitAll()
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+                .and()
+                .csrf().disable();
     }
 }

@@ -16,6 +16,9 @@
         <module>sc-zuul</module>
         <module>sc-config</module>
         <module>sc-security</module>
+        <module>sc-shiro</module>
+        <module>sc-rabbitmq</module>
+        <module>sc-admin</module>
     </modules>
 
     <parent>
